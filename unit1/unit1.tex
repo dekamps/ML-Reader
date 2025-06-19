@@ -1,4 +1,4 @@
-
+\part{Unit 1 - Recap of Statistics}
 \chapter{Introduction}
 
 \section{Entry Level Requirements}
@@ -45,6 +45,12 @@ should be able to:
 \item Give a Bayesian interpretation of a Bernoulli process using the Beta distribution.
 \end{itemize}
 
+\section{Notebooks and Worksheets}
+The following notebooks contain exercises for this Unit:
+\begin{enumerate}
+  \item \texttt{01\_Simulating\_Stochastic\_Processes.ipynb}
+  \item \texttt{02\_Unfair\_coins\_Maximum\_Likelihood\_and\_Bayes.ipynb}
+\end{enumerate}
 \chapter{Revision of Probability Concepts}
 \section{Basic Concepts}
 \subsection{Probability}
@@ -324,7 +330,7 @@ probability to sample a number from the uniform distribution in the interval $[0
 
 It is not possible to write computer algorithms that generate truly random numbers, but a number of pseudo algorithms is known that generate sequences of numbers that
 \emph{appear} random enough to evade tests that try to establish whether there is structure in the data that was generated. These algorithms simulate the uniform
-distribution, so it plays a central role in simulation random processes. In the activity \emph{Simulating Stochastic Processes}, you will experiment with how you can simulate arbitrary distributions
+distribution, so it plays a central role in simulation random processes. In the jupyter notebook \emph{Simulating Stochastic Processes}, you will experiment with how you can simulate arbitrary distributions
 based on \emph{random number generators} that sample the uniform distribution.
 
 \subsection{Example: Gaussian or Normal Distribution}
@@ -759,7 +765,7 @@ On the one hand they reflect relatively trivial relationships between conditiona
 impact on the development of statistics in the late 20th and 21st century. In particular, a consistent and systematic use of this rule avoids pitfalls in the analysis
 of data. There are indications that we handle conditional probability well in everyday reasoning  if we use them to express \emph{causal} relationships,
 but seriously mishandle them
-if conditional probabilities do not express a causal relationship \cite{pearl2016,pearl2018}. Now please consider \emph{Unit1\_Activity\_Bayes} to see a real world example of the
+if conditional probabilities do not express a causal relationship \cite{pearl2016,pearl2018}. Now please consider \emph{Worksheet Bayes} to see a real world example of the
 relevance of Bayes' rule.
 
 In the next section, we will provide a very simple example of Bayesian analysis of
@@ -863,7 +869,7 @@ The continuous version is not fundamentally different, although it requires cont
 distributions over the interval $[0,1]$, thereby covering all values take $\mu$ could take potentially.
 For continuous variables Bayes' rule is as follows:
 $$
-p(\mu \mid \mathcal{D} ) = \frac{p(\mathcal{D} \mid \mu)} {p(\mathcal{D})},
+p(\mu \mid \mathcal{D} ) = \frac{p(\mathcal{D} \mid \mu)} {p(\mathcal{D})} p(\mu),
 $$
 where
 $$
@@ -889,7 +895,7 @@ $$
 
 Note the following:
 \begin{enumerate}
-\item The likelihood and the prior have a very similar form. This is deliberate: the computation of the posterior is very simple.
+\item The likelihood and the prior have a very similar mathematical form. This is deliberate: the computation of the posterior is very simple this way. 
 \item By picking variables $a$ and $b$ appropriately, we have great freedom in picking the shape of the prior. Helpful in this regard are the following relations:
 \end{enumerate}
   
@@ -971,7 +977,13 @@ of those are involved in training the model and 1 of them is used to evaluate th
 
 Bishop points out that the observation of three tails leads to \emph{overfitting} the MLE \cite{bishop2006}, and a three-fold cross validation would make no difference at all here.
 
-Finally, the issue of normalisation has been treated casually here. The hard work has been done by introducing the Gamma function, but you are recommended to try  Exercise
+
+The likelihood and prior are called  \emph{conjugate} if the posterior and the prior are from the same family of fuctions. Conjugacy determines whether you can do
+Bayesian analysis analytically, or whether you have to resort to numerical approximations. It just happens that beta functions are a nice way of picking priors
+\emph{and} also are the mathematical form for are likelihood. Cojugacy makes Bayesian analysis analytically tractable. Some important models like linear regression
+allow for the choice of conjugate priors, but others like logistic regression do not. In such cases Bayesian analysis must resort to numerical approximations.
+
+The issue of normalisation has been treated casually here. The hard work has been done by introducing the Gamma function, but you are recommended to try  Exercise
 2.5 in \cite{bishop2006} to appreciate that getting the normalisation right is possible because of the nice analytic properties of the Beta function and that without
 such properties, or on an interval that is not $[0,1]$ we would have to resort to numerical integration. In a one dimensional distribution this is not a problem, but in
 multivariate distributions this can become too expansive for practical purposes very rapidly.
